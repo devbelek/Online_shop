@@ -1,0 +1,18 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+{% if order.status %}
+    <h4><b class="text-success">Успешно</b></h4>
+{% else %}
+    <h3><b class="text-danger">Отменено</b></h3>
+{% endif %}
+{% for item in items %}
+<div class="bg-light rounded border-bottom p-3">
+    <p>Товар:<a class="text-decoration-none" href="{{ item.product.get_absolute_url }}"> {{item.product.title}}</a></p>
+    <p>Цена: ${{item.price}}</p>
+    <p>Количество: {{item.quantity}}</p>
+</div>
+{% endfor %}
+<h4 class="border-top pt-2 text-muted">Итого: ${{ order.get_total_price }}</h4>
+
+{% endblock %}
